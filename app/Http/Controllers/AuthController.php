@@ -100,4 +100,14 @@ class AuthController extends Controller
             'data'      => $request->user(),
         ], 200);
     }
+
+    public function index()
+    {
+        return view('login');
+    }
+
+    public function registerPage()
+    {
+        return view('register');
+    }
 }

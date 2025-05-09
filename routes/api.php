@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\VehiclesController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -11,5 +12,5 @@ Route::group(['prefix' => 'panel-control', 'middleware' => ['auth:sanctum']], fu
     Route::post('/logout', [AuthController::class, 'logout']);
 
     // vehicles routes
-    
+    Route::apiResource('vehicles', VehiclesController::class);
 });
