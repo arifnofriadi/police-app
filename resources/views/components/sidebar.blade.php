@@ -17,13 +17,13 @@
                     <span class="hide-menu">Home</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ url('/panel-control/dashboard') }}" aria-expanded="false">
                         <i class="ti ti-atom"></i>
                         <span class="hide-menu">Dashboard</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ url('/panel-control/vehicles') }}" aria-expanded="false">
                         <i class="ti ti-car"></i>
                         <span class="hide-menu">Vehicles</span>
                     </a>
