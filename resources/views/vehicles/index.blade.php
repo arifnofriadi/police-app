@@ -10,7 +10,8 @@
 
     <div class="d-flex flex-row-reverse">
         <div class="p-2">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createVehicleModal">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createVehicleModal"
+                id="addVehicleBtn">
                 Add Vehicle
             </button>
         </div>
@@ -24,33 +25,12 @@
                 <th scope="col">Type</th>
                 <th scope="col">Brand</th>
                 <th scope="col">Color</th>
+                <th scope="col">Is Stolen?</th>
                 <th scope="col">Option</th>
             </tr>
         </thead>
-        <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>B 067 JKT</td>
-                <td>Mobile</td>
-                <td>Honda</td>
-                <td>Red</td>
-                <td>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#editVehicleModal">Edit</button>
-                    <button type="button" class="btn btn-danger">Delete</button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>D 876 VB</td>
-                <td>Motor</td>
-                <td>BMW</td>
-                <td>White Blue</td>
-                <td>
-                    <button type="button" class="btn btn-primary">Edit</button>
-                    <button type="button" class="btn btn-danger">Delete</button>
-                </td>
-            </tr>
+        <tbody id="vehiclesTableBody">
+            
         </tbody>
     </table>
 
@@ -63,48 +43,54 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form id="createVehicleForm">
                         <div class="mb-3">
                             <label for="createLicensePlate" class="form-label">License Plate</label>
-                            <input type="text" class="form-control" id="createLicensePlate" required>
+                            <input type="text" class="form-control" id="createLicensePlate">
+                            <small id="createLicensePlateError" class="text-danger"></small>
                         </div>
                         <div class="mb-3">
                             <label for="createType" class="form-label">Type</label>
-                            <input type="text" class="form-control" id="createType" required>
+                            <input type="text" class="form-control" id="createType">
+                            <small id="createTypeError" class="text-danger"></small>
                         </div>
                         <div class="mb-3">
                             <label for="createBrand" class="form-label">Brand</label>
-                            <input type="text" class="form-control" id="createBrand" required>
+                            <input type="text" class="form-control" id="createBrand">
+                            <small id="createBrandError" class="text-danger"></small>
                         </div>
                         <div class="mb-3">
                             <label for="createColor" class="form-label">Color</label>
-                            <input type="text" class="form-control" id="createColor" required>
+                            <input type="text" class="form-control" id="createColor">
+                            <small id="createColorError" class="text-danger"></small>
                         </div>
                         <div class="mb-3">
-                            <label for="createIsStolen" class="form-label">Is Stolen?</label>
+                            <label class="form-label">Is Stolen?</label>
                             <br>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" name="is_stolen" id="createIsStolen"
-                                    value="0">
-                                <label class="form-check-label" for="inlineRadio1">Yes</label>
+                                <input class="form-check-input" type="radio" name="createIsStolen" id="createIsStolenNo"
+                                    value="0" checked>
+                                <label class="form-check-label" for="createIsStolenNo">No</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" name="is_stolen" id="createIsStolen"
+                                <input class="form-check-input" type="radio" name="createIsStolen" id="createIsStolenYes"
                                     value="1">
-                                <label class="form-check-label" for="inlineRadio2">No</label>
+                                <label class="form-check-label" for="createIsStolenYes">Yes</label>
                             </div>
+                            <small id="createIsStolenError" class="text-danger"></small>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save Vehicle</button>
+                    <button type="submit" class="btn btn-primary" form="createVehicleForm">Save Vehicle</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="modal fade" id="editVehicleModal" tabindex="-1" aria-labelledby="editVehicleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editVehicleModal" tabindex="-1" aria-labelledby="editVehicleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -115,19 +101,19 @@
                     <form>
                         <div class="mb-3">
                             <label for="editLicensePlate" class="form-label">License Plate</label>
-                            <input type="text" class="form-control" id="editLicensePlate" value="B 067 JKT" required>
+                            <input type="text" class="form-control" id="editLicensePlate" value="B 067 JKT">
                         </div>
                         <div class="mb-3">
                             <label for="editType" class="form-label">Type</label>
-                            <input type="text" class="form-control" id="editType" value="Mobile" required>
+                            <input type="text" class="form-control" id="editType" value="Mobile">
                         </div>
                         <div class="mb-3">
                             <label for="editBrand" class="form-label">Brand</label>
-                            <input type="text" class="form-control" id="editBrand" value="Honda" required>
+                            <input type="text" class="form-control" id="editBrand" value="Honda">
                         </div>
                         <div class="mb-3">
                             <label for="editColor" class="form-label">Color</label>
-                            <input type="text" class="form-control" id="editColor" value="Red" required>
+                            <input type="text" class="form-control" id="editColor" value="Red">
                         </div>
                         <div class="mb-3">
                             <label for="createIsStolen" class="form-label">Is Stolen?</label>
