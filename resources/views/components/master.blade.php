@@ -7,6 +7,7 @@
   <title>Police App</title>
   <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/logos/favicon.png')}}" />
   <link rel="stylesheet" href="{{ asset('assets/css/styles.min.css')}}" />
+  <link href="https://cdn.datatables.net/v/bs5/dt-2.3.1/r-3.0.4/sp-2.3.3/datatables.min.css" rel="stylesheet" integrity="sha384-J++hDZeIfhhNo3Fx9z+iz3nlKVoEkdyepyWQ2wcd2CqzaH52SVvaDmYGNFTvhs1X" crossorigin="anonymous">
 </head>
 
 <body>
@@ -47,9 +48,12 @@
   <!-- solar icons -->
   <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
 
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <script src="https://cdn.datatables.net/v/bs5/dt-2.3.1/r-3.0.4/sp-2.3.3/datatables.min.js" integrity="sha384-r2UURpTxS/+GTcTXnTpM3dnRtw1ICQ4yd30beiXjs2I35hy8lmoLW0X6Rs13xFUy" crossorigin="anonymous"></script>
+
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   <script src="{{ asset('js/utils.js') }}"></script>
   <script src="{{ asset('js/dashboard.js') }}"></script>

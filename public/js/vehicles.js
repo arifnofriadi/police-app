@@ -120,7 +120,10 @@ if (window.location.pathname.includes('/panel-control/vehicles')) {
 
         if (data.length === 0) {
             tableBody.innerHTML = `<tr><td colspan="6" class="text-center">Data not available</td></tr>`;
+            return;
         }
+
+        window.vehicleData = data; // menyimpan data pada scope global
 
         data.forEach((item, index) => {
             const row = document.createElement('tr');
@@ -134,10 +137,75 @@ if (window.location.pathname.includes('/panel-control/vehicles')) {
                 <td>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                         data-bs-target="#editVehicleModal">Edit</button>
-                    <button type="button" class="btn btn-danger">Delete</button>
+                    <button type="button" class="btn btn-danger" onclick="confirmDeleteVehicle(${item.id})">Delete</button>
                 </td>
             `;
             tableBody.appendChild(row);
         });
+
+        // inisiasi data tables
+        $('#vehiclesTable').DataTable({
+          responsive: true,
+          autoWidth: false,
+          pageLenght: 10,
+          lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]],
+          language: {
+            search: "Cari:",
+            lengthMenu: "Tampilkan _MENU_ Entri",
+            info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
+            infoEmpty: "Tidak ada data yang tersedia",
+            paginate: {
+              first: "Pertama",
+              last: "Terakhir",
+              next: "Selanjutnya",
+              previous: "Sebelumnya",
+            },
+          }
+        });
+    }
+}
+
+async function confirmDeleteVehicle(id) {
+    console.log("Delete vehicle with ID:", id);
+    const result = await Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    });
+
+    if (result.isConfirmed) {
+        deleteVehicle(id);
+    }
+}
+
+async function deleteVehicle(id) {
+    try {
+        const token = decodeURIComponent(getCookie('token'));
+        const response = await axios.delete(`/api/panel-control/vehicles/${id}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            },
+            withCredentials: true
+        });
+
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            icon: 'success',
+            title: response.data.message || 'Data deleted successfully.'
+        });
+
+        document.getElementById('vehiclesTableBody').innerHTML = '';
+        setTimeout(() => location.reload(), 1000);
+    } catch (error) {
+        console.error("Gagal menghapus data:", error);
+        const errorMessage = error.response?.data?.message || "Terjadi kesalahan saat menghapus data.";
+        showErrorToast(errorMessage);
     }
 }

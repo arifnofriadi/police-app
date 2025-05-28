@@ -17,7 +17,7 @@
         </div>
     </div>
 
-    <table class="table table-striped">
+    <table class="table table-striped" id="vehiclesTable">
         <thead class="bg-primary text-white">
             <tr>
                 <th scope="col">#</th>
