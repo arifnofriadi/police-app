@@ -2,8 +2,9 @@
     <!-- Sidebar scroll-->
     <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
-            <a href="./index.html" class="text-nowrap logo-img">
-                <img src="../assets/images/logos/logo.svg" alt="" />
+            <a href="#" class="text-nowrap logo-img">
+                <img src="{{ asset('assets/images/shield.png')}}" class="w-25" alt="" />
+                <span class="h2 fw-bold text-primary">Police App</span>
             </a>
             <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
                 <i class="ti ti-x fs-6"></i>
