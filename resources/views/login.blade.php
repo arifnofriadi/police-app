@@ -24,7 +24,7 @@
                   <img src="{{ asset('assets/images/shield.png')}}" width="15%" alt="">
                   <span class="h2 fw-bold text-primary">Police App</span>
                 </a>
-                <p class="text-center">Connecting Citizens with Law Enforcement</p>
+                <p class="text-center">Make a easy way to connect with Law Enforcement</p>
                 <form id="loginForm">
                   <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Email</label>
